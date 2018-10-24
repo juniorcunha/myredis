@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "engines": {
+    "node": ">=8.13.0"
+  },
   "author": "Junior Cunha",
   "license": "ISC",
   "dependencies": {
