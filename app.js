@@ -10,7 +10,6 @@ var minimist = require('minimist');
 // APP Modules
 //
 var db       = require('./lib/db');
-//var http     = require('./lib/http'); 
 
 function init() {
 
@@ -23,8 +22,11 @@ function init() {
 		return showHelp();
 
 	// Load frontend according to given arguments
-	//if (argv.http)
-	//	http.init(db);
+	if (argv.http) {
+		var http = require('./lib/http');
+		http.setDB(db);
+		http.start();
+	}
 	if (argv.cli) {
 		var cli = require('./lib/cli');
 		cli.setDB(db);
@@ -39,7 +41,7 @@ function showHelp() {
 	console.log("   or   node app.js --cli")
 	console.log("\n");
 	console.log(" Options:");
-	console.log("  --http    Start the http network interface in order to interact with the database [TODO]");
+	console.log("  --http    Start the http network interface in order to interact with the database");
 	console.log("  --cli     Use the CLI (Command Line Interface) to interact with the database");
 	console.log("  --help    Show this help message");
 	console.log("\n"); 
